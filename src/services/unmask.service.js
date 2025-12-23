@@ -1,9 +1,8 @@
 import { sendImageBase64ToOCR } from '../clients/ocr.client.js';
 import { chatWithLLM } from '../clients/llm.client.js';
-import { searchMediaCoverage } from '../clients/reports.client.js';
 import { CleanText } from '../helpers/cleantext.js';
 import { buildPrompt } from '../helpers/prompt.js';
-import { safeParseJSON } from '../validators/json.validator.js';
+import { safeParseJSON } from '../validators/JSON.validator.js';
 
 export async function analyzeImageForFakeNews(imageBase64) {
   if (!imageBase64) {
@@ -11,7 +10,7 @@ export async function analyzeImageForFakeNews(imageBase64) {
   }
 
   
-  //hola
+  
   const ocrResult = await sendImageBase64ToOCR({ imageBase64 });
 
 
