@@ -11,7 +11,7 @@ export async function analyzeImageForFakeNews(imageBase64) {
   }
 
   
-  
+  //hola
   const ocrResult = await sendImageBase64ToOCR({ imageBase64 });
 
 
