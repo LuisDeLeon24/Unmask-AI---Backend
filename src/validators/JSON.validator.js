@@ -6,7 +6,6 @@ export function safeParseJSON(raw) {
   }
 
   try {
-    // Quitar markdown ```json ``` o ```
     const cleaned = raw
       .replace(/```json/g, '')
       .replace(/```/g, '')

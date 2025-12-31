@@ -75,7 +75,7 @@ export async function sendImageBase64ToOCR({
     return response.data.result;
 
   } catch (error) {
-    console.error('🔥 OCR REQUEST FAILED');
+    console.error('OCR REQUEST FAILED');
 
     if (error.response) {
       console.error('OCR status:', error.response.status);

@@ -14,7 +14,8 @@ export async function chatWithLLM({
     console.error('messages inválidos:', messages);
     throw new Error('messages must be a non-empty array');
   }
-
+  
+  console.log(messages)
   console.log('messages count:', messages.length);
   console.log('model:', model);
   console.log('temperature:', temperature);
@@ -50,9 +51,10 @@ export async function chatWithLLM({
     const response = await axios.post(LLM_API_URL, payload, { headers });
 
     console.log('LLM response status:', response.status);
+    console.log('LLM response', response.data);
 
     if (!response.data) {
-      console.error('❌ LLM response has no data');
+      console.error('LLM response has no data');
     } else {
       console.log(
         'LLM response keys:',

@@ -1,5 +1,4 @@
-import { analyzeImageForFakeNews } from '../services/unmask.service.js';
-import { analyzeImageWithMediaCheck } from "../services/mediaverification.service.js";
+import { analyzeImageForFakeNews, analyzeImageWithEvidenceFirst } from '../services/unmask.service.js';
 
 export async function analyzeImageController(req, res) {
   try {
@@ -27,19 +26,30 @@ export async function analyzeImageController(req, res) {
   }
 }
 
-export async function unmaskMediaController(req, res) {
+export async function analyzeImageNewsController(req, res) {
   try {
     const { imageBase64 } = req.body;
 
-    const result = await analyzeImageWithMediaCheck(imageBase64);
+    if (!imageBase64) {
+      return res.status(400).json({
+        success: false,
+        error: 'imageBase64 is required'
+      });
+    }
 
-    res.json({
+    const result = await analyzeImageWithEvidenceFirst(imageBase64);
+
+    return res.status(200).json({
       success: true,
       data: result
     });
 
   } catch (error) {
-    console.error("[UnmaskController] Error:", error);
-    res.status(500).json({ success: false, error: error.message });
+    console.error('[ANALYZE_IMAGE_ERROR]', error.message);
+
+    return res.status(500).json({
+      success: false,
+      error: error.message || 'Internal server error'
+    });
   }
 }

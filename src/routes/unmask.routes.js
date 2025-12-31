@@ -1,9 +1,11 @@
 import { Router } from 'express';
-import { analyzeImageController , unmaskMediaController } from '../controller/unmask.controller.js';
+import { analyzeImageController , analyzeImageNewsController} from '../controller/unmask.controller.js';
 
 const router = Router();
 
 
 router.post('/image', analyzeImageController);
-router.post('/media', unmaskMediaController);
+
+router.post('/image/news', analyzeImageNewsController);
+
 export default router;
